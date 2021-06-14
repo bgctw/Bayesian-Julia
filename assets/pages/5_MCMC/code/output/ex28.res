@@ -1,0 +1,1 @@
+Plots.AnimatedGif("/home/runner/work/Bayesian-Julia/Bayesian-Julia/__site/assets/pages/5_MCMC/code/output/parallel_gibbs.gif")
