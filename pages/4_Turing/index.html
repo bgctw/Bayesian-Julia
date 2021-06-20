@@ -48,12 +48,12 @@ data = rand(DiscreteUniform(<span class=hljs-number >1</span>, <span class=hljs-
   parameters      mean       std   naive_se      mcse         ess      rhat   ess_per_sec
       Symbol   Float64   Float64    Float64   Float64     Float64   Float64       Float64
 
-        p[1]    0.1571    0.0113     0.0003    0.0002   2615.7263    0.9995        7.1998
-        p[2]    0.1818    0.0127     0.0003    0.0003   2876.5057    0.9995        7.9176
-        p[3]    0.1423    0.0109     0.0002    0.0002   2759.9004    0.9997        7.5967
-        p[4]    0.1868    0.0125     0.0003    0.0003   2537.4416    0.9996        6.9844
-        p[5]    0.1622    0.0113     0.0003    0.0002   2665.4456    0.9998        7.3367
-        p[6]    0.1698    0.0117     0.0003    0.0003   2265.9350    0.9995        6.2370
+        p[1]    0.1571    0.0113     0.0003    0.0002   2615.7263    0.9995        6.2233
+        p[2]    0.1818    0.0127     0.0003    0.0003   2876.5057    0.9995        6.8437
+        p[3]    0.1423    0.0109     0.0002    0.0002   2759.9004    0.9997        6.5663
+        p[4]    0.1868    0.0125     0.0003    0.0003   2537.4416    0.9996        6.0370
+        p[5]    0.1622    0.0113     0.0003    0.0002   2665.4456    0.9998        6.3416
+        p[6]    0.1698    0.0117     0.0003    0.0003   2265.9350    0.9995        5.3911
 </code></pre>
 <p>Here <code>p</code> is a 6-dimensional vector of probabilities, which each one associated with a mutually exclusive outcome of a six-sided dice throw. As we expected, the probabilities are almost equal to <span class=katex ><span class=katex-mathml ><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mn>1</mn><mn>6</mn></mfrac></mrow><annotation encoding="application/x-tex">\frac{1}{6}</annotation></semantics></math></span><span class=katex-html  aria-hidden=true ><span class=base ><span class=strut  style="height:1.190108em;vertical-align:-0.345em;"></span><span class=mord ><span class="mopen nulldelimiter"></span><span class=mfrac ><span class="vlist-t vlist-t2"><span class=vlist-r ><span class=vlist  style="height:0.845108em;"><span style="top:-2.6550000000000002em;"><span class=pstrut  style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">6</span></span></span></span><span style="top:-3.23em;"><span class=pstrut  style="height:3em;"></span><span class=frac-line  style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class=pstrut  style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class=vlist-s >​</span></span><span class=vlist-r ><span class=vlist  style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span>, like a &quot;fair&quot; six-sided dice that we simulated data from &#40;sampling from <code>DiscreteUniform&#40;1, 6&#41;</code>&#41;. Indeed, just for a sanity check, the mean of the estimates of <code>p</code> sums up to 1:</p>
 <pre><code class="julia hljs">sum(summaries[:, :mean])</code></pre><pre><code class="plaintext hljs">1.0</code></pre>
@@ -62,17 +62,17 @@ data = rand(DiscreteUniform(<span class=hljs-number >1</span>, <span class=hljs-
   parameters      mean       std   naive_se      mcse         ess      rhat   ess_per_sec
       Symbol   Float64   Float64    Float64   Float64     Float64   Float64       Float64
 
-        p[1]    0.1571    0.0113     0.0003    0.0002   2615.7263    0.9995        7.1998
-        p[2]    0.1818    0.0127     0.0003    0.0003   2876.5057    0.9995        7.9176
-        p[3]    0.1423    0.0109     0.0002    0.0002   2759.9004    0.9997        7.5967
+        p[1]    0.1571    0.0113     0.0003    0.0002   2615.7263    0.9995        6.2233
+        p[2]    0.1818    0.0127     0.0003    0.0003   2876.5057    0.9995        6.8437
+        p[3]    0.1423    0.0109     0.0002    0.0002   2759.9004    0.9997        6.5663
 </code></pre>
 <p>or <code>chain&#91;&#91;:parameters,...&#93;&#93;</code>:</p>
 <pre><code class="julia hljs">summarystats(chain[[:<span class=hljs-string >var&quot;p[1]&quot;</span>, :<span class=hljs-string >var&quot;p[2]&quot;</span>]])</code></pre><pre><code class="plaintext hljs">Summary Statistics
   parameters      mean       std   naive_se      mcse         ess      rhat   ess_per_sec
       Symbol   Float64   Float64    Float64   Float64     Float64   Float64       Float64
 
-        p[1]    0.1571    0.0113     0.0003    0.0002   2615.7263    0.9995        7.1998
-        p[2]    0.1818    0.0127     0.0003    0.0003   2876.5057    0.9995        7.9176
+        p[1]    0.1571    0.0113     0.0003    0.0002   2615.7263    0.9995        6.2233
+        p[2]    0.1818    0.0127     0.0003    0.0003   2876.5057    0.9995        6.8437
 </code></pre>
 <p>And, finally let&#39;s compute the expectation of the estimated six-sided dice, <span class=katex ><span class=katex-mathml ><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi><mo stretchy=false >(</mo><mover accent=true ><mi>X</mi><mo>~</mo></mover><mo stretchy=false >)</mo></mrow><annotation encoding="application/x-tex">E(\tilde{X})</annotation></semantics></math></span><span class=katex-html  aria-hidden=true ><span class=base ><span class=strut  style="height:1.1701899999999998em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class=mopen >(</span><span class="mord accent"><span class=vlist-t ><span class=vlist-r ><span class=vlist  style="height:0.9201899999999998em;"><span style="top:-3em;"><span class=pstrut  style="height:3em;"></span><span class="mord mathnormal" style="margin-right:0.07847em;">X</span></span><span style="top:-3.6023300000000003em;"><span class=pstrut  style="height:3em;"></span><span class=accent-body  style="left:-0.16666em;"><span class=mord >~</span></span></span></span></span></span></span><span class=mclose >)</span></span></span></span>, using the standard expectation definition of expectation for a discrete random variable:</p>
 <span class=katex-display ><span class=katex ><span class=katex-mathml ><math xmlns="http://www.w3.org/1998/Math/MathML" display=block ><semantics><mrow><mi>E</mi><mo stretchy=false >(</mo><mi>X</mi><mo stretchy=false >)</mo><mo>=</mo><munder><mo>∑</mo><mrow><mi>x</mi><mo>∈</mo><mi>X</mi></mrow></munder><mi>x</mi><mo>⋅</mo><mi>P</mi><mo stretchy=false >(</mo><mi>x</mi><mo stretchy=false >)</mo></mrow><annotation encoding="application/x-tex"> E(X) = \sum_{x \in X} x \cdot P(x) </annotation></semantics></math></span><span class=katex-html  aria-hidden=true ><span class=base ><span class=strut  style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class=mopen >(</span><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class=mclose >)</span><span class=mspace  style="margin-right:0.2777777777777778em;"></span><span class=mrel >=</span><span class=mspace  style="margin-right:0.2777777777777778em;"></span></span><span class=base ><span class=strut  style="height:2.3717110000000003em;vertical-align:-1.321706em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class=vlist-r ><span class=vlist  style="height:1.050005em;"><span style="top:-1.8556639999999998em;margin-left:0em;"><span class=pstrut  style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">x</span><span class="mrel mtight">∈</span><span class="mord mathnormal mtight" style="margin-right:0.07847em;">X</span></span></span></span><span style="top:-3.0500049999999996em;"><span class=pstrut  style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span></span><span class=vlist-s >​</span></span><span class=vlist-r ><span class=vlist  style="height:1.321706em;"><span></span></span></span></span></span><span class=mspace  style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal">x</span><span class=mspace  style="margin-right:0.2222222222222222em;"></span><span class=mbin >⋅</span><span class=mspace  style="margin-right:0.2222222222222222em;"></span></span><span class=base ><span class=strut  style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class=mopen >(</span><span class="mord mathnormal">x</span><span class=mclose >)</span></span></span></span></span>
@@ -157,7 +157,7 @@ summarystats(posterior_check)</code></pre><pre><code class="plaintext hljs">Summ
 
 <div class=page-foot >
   <div class=copyright >
-    Last modified: June 14, 2021. Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a> and the <a href="https://julialang.org">Julia programming language</a>.
+    Last modified: June 20, 2021. Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a> and the <a href="https://julialang.org">Julia programming language</a>.
   </div>
 </div>
 </div>

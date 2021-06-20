@@ -58,13 +58,13 @@ summarystats(chain)</code></pre><pre><code class="plaintext hljs">Summary Statis
   parameters      mean       std   naive_se      mcse         ess      rhat   ess_per_sec
       Symbol   Float64   Float64    Float64   Float64     Float64   Float64       Float64
 
-          νₐ    4.8933    6.1423     0.0687    0.0979   5469.6950    0.9999      158.6338
-          νᵦ    5.3556    6.9368     0.0776    0.1011   4645.8114    1.0000      134.7393
-           α   -7.5700    2.9869     0.0334    0.0368   6242.9854    0.9999      181.0611
-        β[1]    0.7729    0.1061     0.0012    0.0019   3675.3451    1.0011      106.5935
-        β[2]    0.4449    0.0852     0.0010    0.0015   3785.1601    1.0013      109.7784
-           σ    7.2431    1.7813     0.0199    0.0320   3335.2214    1.0009       96.7292
-           ν    2.9834    2.9854     0.0334    0.0573   3222.2035    1.0009       93.4514
+          νₐ    4.8933    6.1423     0.0687    0.0979   5469.6950    0.9999      134.2981
+          νᵦ    5.3556    6.9368     0.0776    0.1011   4645.8114    1.0000      114.0692
+           α   -7.5700    2.9869     0.0334    0.0368   6242.9854    0.9999      153.2849
+        β[1]    0.7729    0.1061     0.0012    0.0019   3675.3451    1.0011       90.2412
+        β[2]    0.4449    0.0852     0.0010    0.0015   3785.1601    1.0013       92.9375
+           σ    7.2431    1.7813     0.0199    0.0320   3335.2214    1.0009       81.8901
+           ν    2.9834    2.9854     0.0334    0.0573   3222.2035    1.0009       79.1152
 </code></pre>
 <p>We had no problem with the Markov chains as all the <code>rhat</code> are well below <code>1.01</code> &#40;or above <code>0.99</code>&#41;. Also note that all degrees of freedom parameters, the <code>ν</code> stuff, have been estimated with mean around 3 to 5, which indeed signals that our model needed fat tails to make a robust inference. Our model has an error <code>σ</code> of around 7. So it estimates occupation&#39;s prestige ±7. The intercept <code>α</code> is the basal occupation&#39;s prestige value. So each occupation has -7±7 prestige before we add the coefficients multiplied by the occupations&#39; independent variables. And from our coefficients <span class=katex ><span class=katex-mathml ><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant=bold-italic >β</mi></mrow><annotation encoding="application/x-tex">\boldsymbol{\beta}</annotation></semantics></math></span><span class=katex-html  aria-hidden=true ><span class=base ><span class=strut  style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class=mord ><span class=mord ><span class="mord boldsymbol" style="margin-right:0.03403em;">β</span></span></span></span></span></span>, we can see that the <code>quantile&#40;&#41;</code> tells us the uncertainty around their estimates:</p>
 <pre><code class="julia hljs">quantile(chain)</code></pre><pre><code class="plaintext hljs">Quantiles
@@ -91,7 +91,7 @@ summarystats(chain)</code></pre><pre><code class="plaintext hljs">Summary Statis
 
 <div class=page-foot >
   <div class=copyright >
-    Last modified: June 14, 2021. Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a> and the <a href="https://julialang.org">Julia programming language</a>.
+    Last modified: June 20, 2021. Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a> and the <a href="https://julialang.org">Julia programming language</a>.
   </div>
 </div>
 </div>

@@ -678,12 +678,12 @@ summarystats(chain)</code></pre><pre><code class="plaintext hljs">Summary Statis
   parameters      mean       std   naive_se      mcse         ess      rhat   ess_per_sec
       Symbol   Float64   Float64    Float64   Float64     Float64   Float64       Float64
 
-        p[1]    0.1623    0.0117     0.0003    0.0002   2699.1680    0.9997        7.0022
-        p[2]    0.1804    0.0121     0.0003    0.0002   2594.9194    0.9996        6.7317
-        p[3]    0.1657    0.0119     0.0003    0.0002   2705.7241    0.9995        7.0192
-        p[4]    0.1639    0.0118     0.0003    0.0002   3309.5050    0.9996        8.5855
-        p[5]    0.1620    0.0115     0.0003    0.0002   2919.0929    0.9999        7.5727
-        p[6]    0.1658    0.0111     0.0002    0.0002   2833.2427    0.9996        7.3500
+        p[1]    0.1623    0.0117     0.0003    0.0002   2699.1680    0.9997        5.8010
+        p[2]    0.1804    0.0121     0.0003    0.0002   2594.9194    0.9996        5.5770
+        p[3]    0.1657    0.0119     0.0003    0.0002   2705.7241    0.9995        5.8151
+        p[4]    0.1639    0.0118     0.0003    0.0002   3309.5050    0.9996        7.1127
+        p[5]    0.1620    0.0115     0.0003    0.0002   2919.0929    0.9999        6.2737
+        p[6]    0.1658    0.0111     0.0002    0.0002   2833.2427    0.9996        6.0892
 </code></pre>
 <p>We have the following columns that outpus some kind of MCMC summary statistics:</p>
 <ul>
@@ -703,12 +703,12 @@ summarystats(bad_chain)</code></pre><pre><code class="plaintext hljs">Summary St
   parameters      mean       std   naive_se      mcse       ess      rhat   ess_per_sec
       Symbol   Float64   Float64    Float64   Float64   Float64   Float64       Float64
 
-        p[1]    0.1623    0.0122     0.0005    0.0014   33.4066    0.9986        2.0058
-        p[2]    0.1814    0.0119     0.0005    0.0015   41.6685    1.0381        2.5019
-        p[3]    0.1644    0.0109     0.0005    0.0009   16.7898    1.0070        1.0081
-        p[4]    0.1600    0.0134     0.0006    0.0020   21.3334    1.0140        1.2809
-        p[5]    0.1662    0.0140     0.0006    0.0029   14.6070    1.0450        0.8770
-        p[6]    0.1657    0.0150     0.0007    0.0018   26.1448    1.0094        1.5698
+        p[1]    0.1623    0.0122     0.0005    0.0014   33.4066    0.9986        1.6976
+        p[2]    0.1814    0.0119     0.0005    0.0015   41.6685    1.0381        2.1174
+        p[3]    0.1644    0.0109     0.0005    0.0009   16.7898    1.0070        0.8532
+        p[4]    0.1600    0.0134     0.0006    0.0020   21.3334    1.0140        1.0841
+        p[5]    0.1662    0.0140     0.0006    0.0029   14.6070    1.0450        0.7423
+        p[6]    0.1657    0.0150     0.0007    0.0018   26.1448    1.0094        1.3286
 </code></pre>
 <p>Here we can see that the <code>ess</code> and <code>rhat</code> of the <code>bad_chain</code> are <em>really</em> bad&#33; There will be several divergences that we can access in the column <code>numerical_error</code> of a <code>Chains</code> object. Here we have 64 divergences.</p>
 <pre><code class="julia hljs">sum(bad_chain[:numerical_error])</code></pre><pre><code class="plaintext hljs">64.0</code></pre>
@@ -842,7 +842,7 @@ summarystats(bad_chain)</code></pre><pre><code class="plaintext hljs">Summary St
 
 <div class=page-foot >
   <div class=copyright >
-    Last modified: June 14, 2021. Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a> and the <a href="https://julialang.org">Julia programming language</a>.
+    Last modified: June 20, 2021. Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a> and the <a href="https://julialang.org">Julia programming language</a>.
   </div>
 </div>
 </div>

@@ -78,52 +78,52 @@ summarystats(chain_intercept)  |&gt; DataFrame  |&gt; println</code></pre><pre><
  Row │ parameters  mean       std       naive_se    mcse        ess      rhat     ess_per_sec
      │ Symbol      Float64    Float64   Float64     Float64     Float64  Float64  Float64
 ─────┼────────────────────────────────────────────────────────────────────────────────────────
-   1 │ α            70.7684   5.48791   0.0613567   0.177144    1036.9   1.0082       32.0425
-   2 │ β[1]          3.21779  1.24011   0.0138648   0.0183512   3902.97  1.00073     120.611
-   3 │ β[2]        -11.628    1.28267   0.0143407   0.0191741   3753.33  1.00012     115.987
-   4 │ β[3]          7.13598  1.25794   0.0140641   0.0188506   4028.54  1.00032     124.491
-   5 │ β[4]          1.19319  1.25332   0.0140125   0.0188195   3810.19  1.00096     117.744
-   6 │ σ             6.00727  0.273516  0.00305801  0.00341672  5640.23  1.00037     174.296
-   7 │ τ             6.65784  7.6016    0.0849884   0.21169     1402.58  1.00412      43.343
-   8 │ αⱼ[1]        -3.49322  5.38098   0.0601612   0.175903    1023.59  1.00857      31.6312
-   9 │ αⱼ[2]         3.68118  5.38234   0.0601764   0.175645    1028.1   1.00854      31.7708
+   1 │ α            70.7684   5.48791   0.0613567   0.177144    1036.9   1.0082       27.5506
+   2 │ β[1]          3.21779  1.24011   0.0138648   0.0183512   3902.97  1.00073     103.703
+   3 │ β[2]        -11.628    1.28267   0.0143407   0.0191741   3753.33  1.00012      99.7271
+   4 │ β[3]          7.13598  1.25794   0.0140641   0.0188506   4028.54  1.00032     107.04
+   5 │ β[4]          1.19319  1.25332   0.0140125   0.0188195   3810.19  1.00096     101.238
+   6 │ σ             6.00727  0.273516  0.00305801  0.00341672  5640.23  1.00037     149.863
+   7 │ τ             6.65784  7.6016    0.0849884   0.21169     1402.58  1.00412      37.267
+   8 │ αⱼ[1]        -3.49322  5.38098   0.0601612   0.175903    1023.59  1.00857      27.197
+   9 │ αⱼ[2]         3.68118  5.38234   0.0601764   0.175645    1028.1   1.00854      27.317
 </code></pre> <p>Here we can see that the model has a population-level intercept <code>α</code> along with population-level coefficients <code>β</code>s for each <code>cheese</code> dummy variable. But notice that we have also group-level intercepts for each of the groups <code>αⱼ</code>s. Specifically, <code>αⱼ&#91;1&#93;</code> are the rural raters and <code>αⱼ&#91;2&#93;</code> are the urban raters.</p> <p>Now let&#39;s go to the second model, <code>varying_slope</code>:</p> <pre><code class="julia hljs">model_slope = varying_slope(X, idx, y)
 chain_slope = sample(model_slope, NUTS(), MCMCThreads(), <span class=hljs-number >2_000</span>, <span class=hljs-number >4</span>)
 summarystats(chain_slope)  |&gt; DataFrame  |&gt; println</code></pre><pre><code class="plaintext hljs">12×8 DataFrame
  Row │ parameters  mean        std       naive_se    mcse        ess       rhat     ess_per_sec
      │ Symbol      Float64     Float64   Float64     Float64     Float64   Float64  Float64
 ─────┼──────────────────────────────────────────────────────────────────────────────────────────
-   1 │ α           70.5272     5.14562   0.0575298   0.178169     653.629  1.0033       6.8962
-   2 │ σ            6.52962    0.283214  0.00316642  0.00639165  1848.47   1.00203     19.5025
-   3 │ τ[1]         6.301      5.15761   0.0576639   0.184247     684.491  1.00809      7.22182
-   4 │ τ[2]         6.24085    5.71732   0.0639216   0.31856      172.062  1.02051      1.81536
-   5 │ βⱼ[1,1]      0.283791   0.815655  0.0091193   0.0218421   1705.59   1.00149     17.995
-   6 │ βⱼ[2,1]     -0.901693   1.05626   0.0118094   0.0325995    891.973  1.00528      9.41089
-   7 │ βⱼ[3,1]      0.632231   0.871581  0.00974457  0.0190019   2048.0    1.00215     21.6077
-   8 │ βⱼ[4,1]      0.120313   0.775049  0.00866531  0.0195576   1841.14   1.0025      19.4252
-   9 │ βⱼ[1,2]      0.236236   0.808539  0.00903974  0.0150141   3236.28   1.00145     34.1449
-  10 │ βⱼ[2,2]     -0.903018   1.02939   0.0115089   0.021997    1828.67   1.00089     19.2936
-  11 │ βⱼ[3,2]      0.546223   0.882609  0.00986787  0.0201472   1881.99   1.00255     19.8562
-  12 │ βⱼ[4,2]      0.0899406  0.81561   0.00911879  0.0196982   2274.55   1.00224     23.9979
+   1 │ α           70.5272     5.14562   0.0575298   0.178169     653.629  1.0033       5.99952
+   2 │ σ            6.52962    0.283214  0.00316642  0.00639165  1848.47   1.00203     16.9667
+   3 │ τ[1]         6.301      5.15761   0.0576639   0.184247     684.491  1.00809      6.28279
+   4 │ τ[2]         6.24085    5.71732   0.0639216   0.31856      172.062  1.02051      1.57932
+   5 │ βⱼ[1,1]      0.283791   0.815655  0.0091193   0.0218421   1705.59   1.00149     15.6552
+   6 │ βⱼ[2,1]     -0.901693   1.05626   0.0118094   0.0325995    891.973  1.00528      8.18722
+   7 │ βⱼ[3,1]      0.632231   0.871581  0.00974457  0.0190019   2048.0    1.00215     18.7981
+   8 │ βⱼ[4,1]      0.120313   0.775049  0.00866531  0.0195576   1841.14   1.0025      16.8994
+   9 │ βⱼ[1,2]      0.236236   0.808539  0.00903974  0.0150141   3236.28   1.00145     29.7051
+  10 │ βⱼ[2,2]     -0.903018   1.02939   0.0115089   0.021997    1828.67   1.00089     16.7849
+  11 │ βⱼ[3,2]      0.546223   0.882609  0.00986787  0.0201472   1881.99   1.00255     17.2744
+  12 │ βⱼ[4,2]      0.0899406  0.81561   0.00911879  0.0196982   2274.55   1.00224     20.8776
 </code></pre> <p>Here we can see that the model has still a population-level intercept <code>α</code>. But now our population-level coefficients <code>β</code>s are replaced by group-level coefficients <code>βⱼ</code>s along with their standard deviation <code>τᵦ</code>s. Specifically <code>βⱼ</code>&#39;s first index denotes the 4 dummy <code>cheese</code> variables&#39; and the second index are the group membership. So, for example <code>βⱼ&#91;1,1&#93;</code> is the coefficient for <code>cheese_A</code> and rural raters &#40;group 1&#41;.</p> <p>Now let&#39;s go to the third model, <code>varying_intercept_slope</code>:</p> <pre><code class="julia hljs">model_intercept_slope = varying_intercept_slope(X, idx, y)
 chain_intercept_slope = sample(model_intercept_slope, NUTS(), MCMCThreads(), <span class=hljs-number >2_000</span>, <span class=hljs-number >4</span>)
 summarystats(chain_intercept_slope)  |&gt; DataFrame  |&gt; println</code></pre><pre><code class="plaintext hljs">15×8 DataFrame
  Row │ parameters  mean        std       naive_se    mcse        ess       rhat      ess_per_sec
      │ Symbol      Float64     Float64   Float64     Float64     Float64   Float64   Float64
 ─────┼───────────────────────────────────────────────────────────────────────────────────────────
-   1 │ α           70.4457     7.54367   0.0843408   0.168581    1422.27   1.00145       7.90873
-   2 │ σ            5.88023    0.258276  0.00288761  0.00290252  7933.77   1.00046      44.1169
-   3 │ τₐ           6.48589    6.79739   0.0759971   0.190206    1675.39   1.00333       9.31628
-   4 │ τᵦ[1]        6.17748    5.27152   0.0589373   0.15003     1381.08   1.00398       7.67971
-   5 │ τᵦ[2]        6.3886     5.41904   0.0605867   0.150542    1282.92   1.00359       7.13389
-   6 │ αⱼ[1]       -3.25045    5.64181   0.0630774   0.137273     990.726  1.00117       5.50908
-   7 │ αⱼ[2]        3.92342    5.63955   0.063052    0.137561     979.702  1.00115       5.44778
-   8 │ βⱼ[1,1]      0.271351   0.808807  0.00904274  0.0138439   4288.83   1.00104      23.8487
-   9 │ βⱼ[2,1]     -0.888729   1.04732   0.0117094   0.0244363   2088.32   1.00196      11.6124
-  10 │ βⱼ[3,1]      0.552008   0.894551  0.0100014   0.0176826   2518.93   1.00101      14.0069
-  11 │ βⱼ[4,1]      0.0926366  0.797148  0.00891238  0.0118159   4478.14   1.0005       24.9014
-  12 │ βⱼ[1,2]      0.247501   0.801304  0.00895885  0.0107671   4863.67   1.00066      27.0452
-  13 │ βⱼ[2,2]     -0.906415   1.03314   0.0115508   0.022167    2114.98   1.00132      11.7606
-  14 │ βⱼ[3,2]      0.548591   0.875582  0.0097893   0.0141286   2952.3    1.00186      16.4167
-  15 │ βⱼ[4,2]      0.0995871  0.762932  0.00852984  0.00972179  5563.58   0.999855     30.9372
-</code></pre> <p>Now we have fused the previous model in one. We still have a population-level intercept <code>α</code>. But now we have in the same model group-level intercepts for each of the groups <code>αⱼ</code>s and group-level along with their standard deviation <code>τₐ</code>. We also have the coefficients <code>βⱼ</code>s with their standard deviation <code>τᵦ</code>s. The parameters are interpreted exactly as the previous cases.</p> <h2 id=references ><a href="#references" class=header-anchor >References</a></h2> <p>Boatwright, P., McCulloch, R., &amp; Rossi, P. &#40;1999&#41;. Account-level modeling for trade promotion: An application of a constrained parameter hierarchical model. Journal of the American Statistical Association, 94&#40;448&#41;, 1063–1073.</p> <p>de Finetti, B. &#40;1974&#41;. Theory of Probability &#40;Volume 1&#41;. New York: John Wiley &amp; Sons.</p> <p>Nau, R. F. &#40;2001&#41;. De Finetti was Right: Probability Does Not Exist. Theory and Decision, 51&#40;2&#41;, 89–124. https://doi.org/10.1023/A:1015525808214</p> <div class=page-foot > <div class=copyright > Last modified: June 14, 2021. Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a> and the <a href="https://julialang.org">Julia programming language</a>. </div> </div> </div> </div> </div> </div> <!-- end of class page-wrap-->
+   1 │ α           70.4457     7.54367   0.0843408   0.168581    1422.27   1.00145       6.69497
+   2 │ σ            5.88023    0.258276  0.00288761  0.00290252  7933.77   1.00046      37.3463
+   3 │ τₐ           6.48589    6.79739   0.0759971   0.190206    1675.39   1.00333       7.8865
+   4 │ τᵦ[1]        6.17748    5.27152   0.0589373   0.15003     1381.08   1.00398       6.5011
+   5 │ τᵦ[2]        6.3886     5.41904   0.0605867   0.150542    1282.92   1.00359       6.03904
+   6 │ αⱼ[1]       -3.25045    5.64181   0.0630774   0.137273     990.726  1.00117       4.6636
+   7 │ αⱼ[2]        3.92342    5.63955   0.063052    0.137561     979.702  1.00115       4.61171
+   8 │ βⱼ[1,1]      0.271351   0.808807  0.00904274  0.0138439   4288.83   1.00104      20.1886
+   9 │ βⱼ[2,1]     -0.888729   1.04732   0.0117094   0.0244363   2088.32   1.00196       9.83024
+  10 │ βⱼ[3,1]      0.552008   0.894551  0.0100014   0.0176826   2518.93   1.00101      11.8572
+  11 │ βⱼ[4,1]      0.0926366  0.797148  0.00891238  0.0118159   4478.14   1.0005       21.0797
+  12 │ βⱼ[1,2]      0.247501   0.801304  0.00895885  0.0107671   4863.67   1.00066      22.8945
+  13 │ βⱼ[2,2]     -0.906415   1.03314   0.0115508   0.022167    2114.98   1.00132       9.95573
+  14 │ βⱼ[3,2]      0.548591   0.875582  0.0097893   0.0141286   2952.3    1.00186      13.8972
+  15 │ βⱼ[4,2]      0.0995871  0.762932  0.00852984  0.00972179  5563.58   0.999855     26.1892
+</code></pre> <p>Now we have fused the previous model in one. We still have a population-level intercept <code>α</code>. But now we have in the same model group-level intercepts for each of the groups <code>αⱼ</code>s and group-level along with their standard deviation <code>τₐ</code>. We also have the coefficients <code>βⱼ</code>s with their standard deviation <code>τᵦ</code>s. The parameters are interpreted exactly as the previous cases.</p> <h2 id=references ><a href="#references" class=header-anchor >References</a></h2> <p>Boatwright, P., McCulloch, R., &amp; Rossi, P. &#40;1999&#41;. Account-level modeling for trade promotion: An application of a constrained parameter hierarchical model. Journal of the American Statistical Association, 94&#40;448&#41;, 1063–1073.</p> <p>de Finetti, B. &#40;1974&#41;. Theory of Probability &#40;Volume 1&#41;. New York: John Wiley &amp; Sons.</p> <p>Nau, R. F. &#40;2001&#41;. De Finetti was Right: Probability Does Not Exist. Theory and Decision, 51&#40;2&#41;, 89–124. https://doi.org/10.1023/A:1015525808214</p> <div class=page-foot > <div class=copyright > Last modified: June 20, 2021. Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a> and the <a href="https://julialang.org">Julia programming language</a>. </div> </div> </div> </div> </div> </div> <!-- end of class page-wrap-->

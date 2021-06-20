@@ -294,7 +294,7 @@ Whiskers meets Spots and FALLBACK</code></pre> <p>Doesn&#39;t work... 🤷🏼</
 
 size(v::OneHotVector) = (v.len,)
 
-getindex(v::OneHotVector, i::<span class=hljs-built_in >Integer</span>) = <span class=hljs-built_in >Int</span>(i == v.ind)</code></pre><pre><code class="plaintext hljs">getindex (generic function with 837 methods)</code></pre>
+getindex(v::OneHotVector, i::<span class=hljs-built_in >Integer</span>) = <span class=hljs-built_in >Int</span>(i == v.ind)</code></pre><pre><code class="plaintext hljs">getindex (generic function with 845 methods)</code></pre>
 <p>Since <code>OneHotVector</code> is a <code>struct</code> derived from <code>AbstractVector</code> we can use all of the methods previously defined for <code>AbstractVector</code> and it simply works right off the bat. Here we are constructing an <code>Array</code> with a list comprehension:</p>
 <pre><code class="julia hljs">onehot = [OneHotVector(<span class=hljs-number >3</span>, rand(<span class=hljs-number >1</span>:<span class=hljs-number >3</span>)) <span class=hljs-keyword >for</span> _ <span class=hljs-keyword >in</span> <span class=hljs-number >1</span>:<span class=hljs-number >4</span>]</code></pre><pre><code class="plaintext hljs">4-element Vector{OneHotVector}:
  [0, 0, 1]
@@ -324,7 +324,7 @@ inner_sum(A, vs)</code></pre><pre><code class="plaintext hljs">3.021495709848185
 <p>But this default implementation is <strong>slow</strong>:</p>
 <pre><code class="julia hljs"><span class=hljs-keyword >using</span> BenchmarkTools
 
-<span class=hljs-meta >@btime</span> inner_sum($A, $onehot);</code></pre><pre><code class="plaintext hljs">  190.641 ns (4 allocations: 448 bytes)
+<span class=hljs-meta >@btime</span> inner_sum($A, $onehot);</code></pre><pre><code class="plaintext hljs">  259.456 ns (4 allocations: 448 bytes)
 </code></pre>
 <p>We can greatly optimize this procedure. Now let&#39;s redefine matrix multiplication by <code>OneHotVector</code> with a simple column selection. We do this by defining a new method of the <code>*</code> function &#40;multiplier function&#41; of <code>Base</code> Julia. Additionally we also create a new optimized method of <code>inner&#40;&#41;</code> for dealing with <code>OneHotVector</code>:</p>
 <pre><code class="julia hljs"><span class=hljs-keyword >import</span> Base:*
@@ -332,7 +332,7 @@ inner_sum(A, vs)</code></pre><pre><code class="plaintext hljs">3.021495709848185
 *(A::<span class=hljs-built_in >AbstractMatrix</span>, v::OneHotVector) = A[:, v.ind]
 inner(v::OneHotVector, A, w::OneHotVector) = A[v.ind, w.ind]</code></pre><pre><code class="plaintext hljs">inner (generic function with 2 methods)</code></pre>
 <p>That&#39;s it&#33; Simple, huh? Now let&#39;s benchmark:</p>
-<pre><code class="julia hljs"><span class=hljs-meta >@btime</span> inner_sum($A, $onehot);</code></pre><pre><code class="plaintext hljs">  4.700 ns (0 allocations: 0 bytes)
+<pre><code class="julia hljs"><span class=hljs-meta >@btime</span> inner_sum($A, $onehot);</code></pre><pre><code class="plaintext hljs">  6.800 ns (0 allocations: 0 bytes)
 </code></pre>
 <p><strong>Huge gains</strong> of speed&#33; 🚀</p>
 <h2 id=julia_the_right_approach ><a href="#julia_the_right_approach" class=header-anchor >Julia: the right approach</a></h2>
@@ -392,7 +392,7 @@ inner(v::OneHotVector, A, w::OneHotVector) = A[v.ind, w.ind]</code></pre><pre><c
 
 <div class=page-foot >
   <div class=copyright >
-    Last modified: June 14, 2021. Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a> and the <a href="https://julialang.org">Julia programming language</a>.
+    Last modified: June 20, 2021. Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a> and the <a href="https://julialang.org">Julia programming language</a>.
   </div>
 </div>
 </div>
